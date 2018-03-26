@@ -7,13 +7,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    BoardComponent
+    BoardComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule
