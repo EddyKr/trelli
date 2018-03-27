@@ -1,8 +1,13 @@
 <header>
   <nav>
-    <a class="logo">Trelli the new Trello</a>
+    <!--<p class="logo">Trelli the new Trello</p>-->
+    <ul>
+      <li><a routerLink="">Dashboard</a></li>
+      <li><a routerLink="register">Register</a></li>
+      <li><a routerLink="logout">Logout</a></li>
+    </ul>
   </nav>
 </header>
 <div id="content-wrapper">
-  <app-dashboard></app-dashboard>
+  <router-outlet></router-outlet>
 </div>

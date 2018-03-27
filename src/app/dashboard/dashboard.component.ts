@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+
+import {ActivatedRoute} from '@angular/router';
+import {AuthService} from "../auth-service";
+import {Router} from "@angular/router";
+import {forEach} from "@angular/router/src/utils/collection";
 import {Board} from '../board/board';
 
 @Component({
@@ -9,15 +14,34 @@ import {Board} from '../board/board';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
-    data: any[];
-  ngOnInit() {
-      this.http.get('http://localhost/trelli/api/boards').subscribe(data => {
-        this.data = data.data.boards;
-      });
+  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router) {
+    // this.route.params.subscribe(res => console.log(res.id));
+    if (!authService.isLoggedIn()){
+      console.log("You are not logged in!");
+      this.router.navigateByUrl('/login');
+    }
   }
 
-  createNewBoard() {
-     console.log(this.http.post('http://localhost/trelli/api/boards/add', <Board> {name: 'name', description: 'description'}).subscribe());
+  boardsCount: number;
+  boards = [];
+
+  ngOnInit() {
+    this.getAllBoards();
+  }
+
+  getAllBoards(){
+    this.http.get('http://localhost/Trelli/api/boards.json').subscribe(response => {
+      this.processBoards(response);
+    });
+  }
+
+  processBoards(response){
+
+    this.boards = response.data.boards;
+    this.boardsCount = this.boards.length;
+  }
+
+  addBoard(){
+    this.http.post('http://localhost/trelli/api/boards/add', <Board> {name: 'name', description: 'description'}).subscribe();
   }
 }
