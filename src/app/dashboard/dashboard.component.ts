@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {ActivatedRoute} from '@angular/router';
@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import { trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations';
 import {forEach} from "@angular/router/src/utils/collection";
 import {Board} from '../board/board';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,7 +38,7 @@ import {Board} from '../board/board';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private router: Router, private fb: FormBuilder) {
     // this.route.params.subscribe(res => console.log(res.id));
     if (!authService.isLoggedIn()){
       console.log("You are not logged in!");
@@ -47,12 +48,19 @@ export class DashboardComponent implements OnInit {
   showVar = false;
   boardsCount: number;
   boards = [];
+  test: FormGroup;
 
   ngOnInit() {
     this.getAllBoards();
   }
-  
+
   toggleForm() {
+      this.form = this.fb.group({
+          board_name: ['', Validators.required]
+      });
+      this.form = this.fb.group({
+          description: ['', Validators.required]
+      });
     this.showVar = !this.showVar;
   }
 
@@ -61,14 +69,17 @@ export class DashboardComponent implements OnInit {
       this.processBoards(response);
     });
   }
-
-  processBoards(response){
+  processBoards(response) {
 
     this.boards = response.data.boards;
     this.boardsCount = this.boards.length;
   }
-
-  addBoard(){
-    this.http.post('http://localhost/Trelli/api/boards/add', <Board> {name: 'New board', description: 'Add description'}).subscribe();
-  }
+    addBoard() {
+        const val = this.form.value;
+        console.log(val);
+        this.http.post('http://localhost/Trelli/api/boards/add', <Board> {
+            name: val.board_name,
+            description: val.description
+        }).subscribe();
+    }
 }

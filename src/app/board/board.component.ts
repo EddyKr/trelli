@@ -35,7 +35,6 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 })
 export class BoardComponent implements OnInit {
 
-  @Input() showForm: boolean;
   form: FormGroup;
   categories = [];
   categoriesCount: number;

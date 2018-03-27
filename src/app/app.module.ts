@@ -28,8 +28,7 @@ import { NewBoardComponent } from './new-board/new-board.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    CategoriesComponent,
-    NewBoardComponent
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

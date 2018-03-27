@@ -9,5 +9,22 @@
     <a href="#" class="board add-board" (click)="toggleForm()">
       <span class="title">Create a new board...</span>
     </a>
-  <div><app-new-board [isVisible]="showVar"></app-new-board></div>
+  <div class="new-board-form" *ngIf="showVar">
+    <form [formGroup]="form"  class="board-form">
+      <fieldset>
+        <div class="form-group">
+          <label for="board_name">Board name</label>
+          <input type="text" class="form-control" id="board_name" placeholder="Board name" name="board_name" formControlName="board_name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" placeholder="Description" name="description" formControlName="description">
+        </div>
+      </fieldset>
+
+      <div class="form-buttons">
+        <button class="btn btn-primary" (click)="addBoard(value)">Create new board!</button>
+      </div>
+    </form>
+  </div>
 </div>
