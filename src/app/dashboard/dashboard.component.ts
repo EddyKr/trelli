@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Board} from "../board/board";
+import {Board} from '../board/board';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   }
 
   createNewBoard() {
-    console.log('bla');
      console.log(this.http.post('http://localhost/trelli/api/boards/add', <Board> {name: 'name', description: 'description'}).subscribe());
   }
 }
