@@ -42,6 +42,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addBoard(){
-    this.http.post('http://localhost/trelli/api/boards/add', <Board> {name: 'name', description: 'description'}).subscribe();
+    this.http.post('http://localhost/Trelli/api/boards/add', <Board> {name: 'New board', description: 'Add description'}).subscribe();
   }
 }
