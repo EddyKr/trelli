@@ -1,4 +1,6 @@
-
+body {
+    background-color: #fff!important;
+}
 
 .boards-wrapper {
     padding: 2em;
@@ -7,18 +9,18 @@
 }
 
 h2 {
-    color: #333;
+    color: #cbcbcb;
     font-weight: 700;
     /*font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif; */
     line-height: 20px;
-    font-size: 12pt;
+    font-size: 1.1rem;
 }
 
 .board {
-    background-color: #0079BF;
+    background-color: #fff;
     height: 72px;
     width: 280px;
-    color: white;
+    color: #333;
     float: left;
     margin-right: 16px;
     margin-bottom: 16px;
