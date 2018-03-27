@@ -1,4 +1,4 @@
-<div id="categories" class="col-sm-8 offset-sm-2">
+<div id="categories" class="col-sm-8 offset-sm-2" [@categories]="categories.length">
   <h2>Categories ({{ categoriesCount }})</h2>
 
   <div *ngFor="let category of categories; let i = index">

@@ -1,0 +1,15 @@
+.container {
+    color: #cbcbcb;
+}
+
+.text-muted {
+    color: #cecece!important;
+}
+
+.btn-primary {
+    background-color: #1abc9c!important;
+}
+
+.btn-primary:hover {
+    background-color: #16a085!important;
+}

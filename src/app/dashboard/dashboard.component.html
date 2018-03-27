@@ -1,5 +1,4 @@
-
-<div id="boards" class="col-sm-8 offset-sm-2">
+<div id="boards" class="col-sm-8 offset-sm-2" [@boards]="boards.length">
   <h2>Boards ({{ boardsCount }})</h2>
 
   <div *ngFor="let board of boards; let i = index">
@@ -7,20 +6,7 @@
       <span class="title">{{ board.name }}</span>
     </a>
   </div>
-    <a href="#" class="board add-board" (click)="addBoard()">
+    <a href="#" class="board add-board" (click)="createNewBoard()">
       <span class="title">Create a new board...</span>
     </a>
 </div>
-
-<!--
-<<<<<<< HEAD
-<div class="boards-wrapper">
-  <h2>Boards</h2>
-  <div id="boards">
-    <a class="board" *ngFor="let board of data">
-      <span class="title">{{board.name}}</span>
-    </a>
-
-    <a href="#" class="board add-board" (click)="createNewBoard()" >
-      <span class="title">Create a new board...</span>
-      =======-->
