@@ -68,7 +68,6 @@ export class BoardComponent implements OnInit {
     }
 
     this.categoriesCount = this.categories.length;
-    console.log(this.categories);
   }
 
   triggerAddNewTask(id){
@@ -83,9 +82,10 @@ export class BoardComponent implements OnInit {
     const val = this.form.value;
     for (var i = 0; i < this.categories.length; i++){
       if (this.categories[i].id == id){
-        this.categories[i].tasks.push({id: 1, title: val.task_name, description: ''});
+        this.categories[i].tasks.push({id: 1, title: val.task_name, description: 'Add description'});
         this.form.reset();
         this.categories[i].showNewTask = false;
+        this.http.post('http://localhost/Trelli/api/tasks/add.json', <Task> {title: val.task_name, description: 'Add description', category_id: id}).subscribe();
       }
     }
   }
