@@ -1,3 +1,15 @@
-<p>
-  board works!
-</p>
+<div id="categories" class="col-sm-8 offset-sm-2">
+  <h2>Categories ({{ categoriesCount }})</h2>
+
+  <div *ngFor="let category of categories; let i = index">
+    <div class="col-sm-2 category">
+      <span class="title">{{ category.title }}</span>
+      <ul class="tasks">
+        <li *ngFor="let task of category.tasks; let j = index">
+          <a href="*" class="task"><p>{{ task.title }}</p></a>
+        </li>
+        <a href="*" class="new-task">Add a new task...</a>
+      </ul>
+    </div>
+  </div>
+</div>

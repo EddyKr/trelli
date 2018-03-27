@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from "../auth-service";
 import {Router} from "@angular/router";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-dashboard',
@@ -19,13 +20,23 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  boardsCount: number;
+  boards = [];
+
   ngOnInit() {
+    this.getAllBoards();
   }
 
   getAllBoards(){
-    this.http.get('http://localhost/Trelli/api/boards.json').subscribe(data => {
-      console.log(data);
+    this.http.get('http://localhost/Trelli/api/boards.json').subscribe(response => {
+      this.processBoards(response);
     });
+  }
+
+  processBoards(response){
+
+    this.boards = response.data.boards;
+    this.boardsCount = this.boards.length;
   }
 
   addBoard(){
