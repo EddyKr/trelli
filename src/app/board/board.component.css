@@ -49,6 +49,10 @@ h2 {
     font-size: 0.8rem;
 }
 
+.new-task:hover {
+    cursor: pointer;
+}
+
 .tasks {
     margin-bottom: 0;
 }
