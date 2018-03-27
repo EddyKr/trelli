@@ -1,12 +1,13 @@
 <div id="boards" class="col-sm-8 offset-sm-2" [@boards]="boards.length">
   <h2>Boards ({{ boardsCount }})</h2>
 
-  <div *ngFor="let board of boards; let i = index">
+  <div *ngFor="let board of boards">
     <a routerLink="board/{{ board.id }}" class="board" id="{{board.id}}">
       <span class="title">{{ board.name }}</span>
     </a>
   </div>
-    <a href="#" class="board add-board" (click)="addBoard()">
+    <a href="#" class="board add-board" (click)="toggleForm()">
       <span class="title">Create a new board...</span>
     </a>
+  <div><app-new-board [isVisible]="showVar"></app-new-board></div>
 </div>

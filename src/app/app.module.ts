@@ -16,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import {AuthService} from "./auth-service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoriesComponent } from './categories/categories.component';
+import { NewBoardComponent } from './new-board/new-board.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BoardComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    CategoriesComponent,
+    NewBoardComponent
   ],
   imports: [
     BrowserModule,

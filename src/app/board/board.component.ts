@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../auth-service";
@@ -33,7 +33,7 @@ import {Board} from "./board";
   ]
 })
 export class BoardComponent implements OnInit {
-
+  @Input() showForm: boolean;
   categories = [];
   categoriesCount: number;
   boardId: string;
@@ -49,7 +49,7 @@ export class BoardComponent implements OnInit {
   }
 
   getCategories(){
-    this.http.get('http://localhost/Trelli/api/boards/' + this.boardId + '.json').subscribe(response => {
+    this.http.get('http://localhost/Trelli/api/boards/' + this.boardId).subscribe(response => {
       this.processCategories(response);
     });
   }
@@ -59,5 +59,7 @@ export class BoardComponent implements OnInit {
     this.categories = response.data.board.categories;
     this.categoriesCount = this.categories.length;
   }
+
+
 
 }

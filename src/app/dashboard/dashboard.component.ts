@@ -44,15 +44,19 @@ export class DashboardComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
   }
-
+  showVar = false;
   boardsCount: number;
   boards = [];
 
   ngOnInit() {
     this.getAllBoards();
   }
+  
+  toggleForm() {
+    this.showVar = !this.showVar;
+  }
 
-  getAllBoards(){
+  getAllBoards() {
     this.http.get('http://localhost/Trelli/api/boards.json').subscribe(response => {
       this.processBoards(response);
     });
