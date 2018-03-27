@@ -1,6 +1,7 @@
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import moment = require("moment/moment");
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AuthService {
@@ -9,15 +10,16 @@ export class AuthService {
     }
 
     login(username:string, password:string ) {
-        
+
         var headers = new HttpHeaders();
         headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.post('http://localhost/Trelli/api/token.json', {'username':username, 'password':password}, {
             headers: headers
         })
-            .do(res => this.setSession)
+            .do(res => this.setSession(res))
             // this is just the HTTP call,
         // we still need to handle the reception of the token
             .shareReplay();
@@ -26,7 +28,7 @@ export class AuthService {
     private setSession(authResult) {
         // const expiresAt = moment().add(authResult.expiresIn,'second');
 
-        localStorage.setItem('token', authResult.token);
+        localStorage.setItem('token', authResult.data.token);
         // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
     }
 
@@ -37,7 +39,11 @@ export class AuthService {
 
     public isLoggedIn() {
         // return moment().isBefore(this.getExpiration());
-        return true;
+        if (localStorage.getItem("token")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     isLoggedOut() {
