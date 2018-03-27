@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../auth-service";
 import { trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations';
+import {Board} from "./board";
 
 @Component({
   selector: 'app-board',

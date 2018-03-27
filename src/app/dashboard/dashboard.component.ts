@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from "../auth-service";
 import {Router} from "@angular/router";
 import { trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations';
+import {forEach} from "@angular/router/src/utils/collection";
+import {Board} from '../board/board';
 
 @Component({
   selector: 'app-dashboard',
@@ -62,9 +65,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addBoard(){
-    this.http.get('http://localhost/Trelli/api/boards.json').subscribe(data => {
-      console.log(data);
-    });
+    this.http.post('http://localhost/Trelli/api/boards/add', <Board> {name: 'New board', description: 'Add description'}).subscribe();
   }
-
 }
