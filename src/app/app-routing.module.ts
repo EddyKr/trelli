@@ -26,7 +26,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'board',
+    path: 'board/:id',
     component: BoardComponent
   },
 ];
