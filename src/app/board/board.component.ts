@@ -11,11 +11,12 @@ import {AuthService} from "../auth-service";
 export class BoardComponent implements OnInit {
 
   categories = [];
-  board_id;
+  categoriesCount: number;
+  boardId: string;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.route.paramMap.subscribe(params => {
-      this.board_id = params.get('id');
+      this.boardId = params.get('id');
     });
   }
 
@@ -24,7 +25,7 @@ export class BoardComponent implements OnInit {
   }
 
   getCategories(){
-    this.http.get('http://localhost/Trelli/api/boards/' + this.board_id + '.json').subscribe(response => {
+    this.http.get('http://localhost/Trelli/api/boards/' + this.boardId + '.json').subscribe(response => {
       this.processCategories(response);
     });
   }
@@ -32,6 +33,7 @@ export class BoardComponent implements OnInit {
   processCategories(response){
     console.log(response);
     this.categories = response.data.board.categories;
+    this.categoriesCount = this.categories.length;
   }
 
 }
