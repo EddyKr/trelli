@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TrelliHttpInterceptor } from './trelli-http-interceptor'
+import { HttpClientModule, HTTP_INTERCEPTORS, Http } from '@angular/common/http';
+import { TrelliHttpInterceptor } from './trelli-http-interceptor';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
