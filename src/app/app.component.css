@@ -35,7 +35,7 @@ nav p.logo{
     display: block;
     height: calc(100% - 40px);
     /*overflow: auto;*/
-    padding-top: 40px;
+    padding-top: 80px;
 }
 #disclaimer {
     width: 80%;
