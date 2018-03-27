@@ -4,8 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TrelliHttpInterceptor } from './trelli-http-interceptor'
+import { TrelliHttpInterceptor } from './trelli-http-interceptor';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
