@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TrelliHttpInterceptor } from './trelli-http-interceptor'
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,9 +23,17 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TrelliHttpInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
