@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../auth-service";
 import { trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations';
 import {Board} from "./board";
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-board',
@@ -34,13 +35,18 @@ import {Board} from "./board";
 })
 export class BoardComponent implements OnInit {
 
+  form:FormGroup;
   categories = [];
   categoriesCount: number;
   boardId: string;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private fb:FormBuilder) {
     this.route.paramMap.subscribe(params => {
       this.boardId = params.get('id');
+    });
+
+    this.form = this.fb.group({
+      task_name: ['',Validators.required]
     });
   }
 
@@ -55,9 +61,33 @@ export class BoardComponent implements OnInit {
   }
 
   processCategories(response){
-    console.log(response);
     this.categories = response.data.board.categories;
+
+    for (var i = 0; i < this.categories.length; i++){
+      this.categories[i].showNewTask = false;
+    }
+
     this.categoriesCount = this.categories.length;
+    console.log(this.categories);
+  }
+
+  triggerAddNewTask(id){
+    for (var i = 0; i < this.categories.length; i++){
+      if (this.categories[i].id == id){
+        this.categories[i].showNewTask = true;
+      }
+    }
+  }
+
+  addNewTask(id){
+    const val = this.form.value;
+    for (var i = 0; i < this.categories.length; i++){
+      if (this.categories[i].id == id){
+        this.categories[i].tasks.push({id: 1, title: val.task_name, description: ''});
+        this.form.reset();
+        this.categories[i].showNewTask = false;
+      }
+    }
   }
 
 }
