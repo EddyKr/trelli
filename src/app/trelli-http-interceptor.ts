@@ -12,23 +12,30 @@ export class TrelliHttpInterceptor implements HttpInterceptor {
 
         console.log("Intercepted request... ");
 
-        // Clone the request to add the new header.
-        const authReq = req.clone({
-            setHeaders:{
-                Accept: 'application/json',
-                Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjYsImV4cCI6MTUyMjc2NjI3Nn0.2mWcKxULm5cLBJRkGPJpr-xX36YcsdCjx3YolNav3wk'
-            }});
+        const token = localStorage.getItem("token");
 
-        console.log("Sending request with new header now...");
+        if (token) {
+            // Clone the request to add the new header.
+            const cloned = req.clone({
+                setHeaders: {
+                    Accept: 'application/json',
+                    Authorization: 'Bearer ' + token
+                }
+            });
 
-        //send the newly created request
-        return next.handle(authReq)
-            .catch((error, caught) => {
-                //intercept the respons error and displace it to the console
-                console.log("Error Occurred");
-                console.log(error);
-                //return the error to the method that called it
-                return Observable.throw(error);
-            }) as any;
+            console.log("Sending request with new header now...");
+            return next.handle(cloned);
+        }
+        else {
+            //send the newly created request
+            return next.handle(req)
+                .catch((error, caught) => {
+                    //intercept the respons error and displace it to the console
+                    console.log("Error Occurred");
+                    console.log(error);
+                    //return the error to the method that called it
+                    return Observable.throw(error);
+                }) as any;
+        }
     }
 }
