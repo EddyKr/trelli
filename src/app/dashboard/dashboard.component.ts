@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
 
   toggleForm() {
       this.form = this.fb.group({
-          board_name: ['', Validators.required]
+          board_name: ['123', Validators.required]
       });
       this.form = this.fb.group({
           description: ['', Validators.required]
@@ -74,12 +74,12 @@ export class DashboardComponent implements OnInit {
     this.boards = response.data.boards;
     this.boardsCount = this.boards.length;
   }
-    addBoard() {
-        const val = this.form.value;
-        console.log(val);
-        this.http.post('http://localhost/Trelli/api/boards/add', <Board> {
-            name: val.board_name,
-            description: val.description
-        }).subscribe();
-    }
+  addBoard() {
+      const val = this.form.value;
+      console.log(val);
+      this.http.post('http://localhost/Trelli/api/boards/add', <Board> {
+          name: val.board_name,
+          description: val.description
+      }).subscribe();
+  }
 }
