@@ -20,6 +20,7 @@ export class TrelliHttpInterceptor implements HttpInterceptor {
             const cloned = req.clone({
                 setHeaders: {
                     Accept: 'application/json',
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token
                 }
             });
