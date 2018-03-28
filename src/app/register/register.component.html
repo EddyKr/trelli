@@ -1,3 +1,19 @@
-<p>
-  register works!
-</p>
+<div class="col-sm-2 offset-sm-5 container">
+  <h3 class="text-center">Register</h3>
+  <form [formGroup]="form">
+    <fieldset>
+      <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" class="form-control" id="usernameInput" aria-describedby="usernameHelp" placeholder="Enter username" name="username" formControlName="username">
+        <small id="usernameHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" class="form-control" id="passwordInput" placeholder="Password" name="password" formControlName="password">
+      </div>
+    </fieldset>
+    <div class="form-buttons">
+      <button class="btn btn-primary" (click)="register()">Register</button>
+    </div>
+  </form>
+</div>

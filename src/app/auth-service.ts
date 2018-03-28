@@ -25,7 +25,7 @@ export class AuthService {
             .shareReplay();
     }
 
-    private setSession(authResult) {
+    public setSession(authResult) {
         // const expiresAt = moment().add(authResult.expiresIn,'second');
 
         localStorage.setItem('token', authResult.data.token);
