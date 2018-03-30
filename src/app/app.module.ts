@@ -14,7 +14,7 @@ import { BoardComponent } from './board/board.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
-import {AuthService} from "./auth-service";
+import {AuthService} from './auth-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 

@@ -41,3 +41,15 @@ h2 {
     background-color: #e2e4e6;
     color: #8c8c8c;
 }
+
+.new-board-form {
+    background-color: #e2e4e6;
+    float: left;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    text-align: left;
+    padding: 9pt 8px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #333;
+}

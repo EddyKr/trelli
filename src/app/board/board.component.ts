@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../auth-service";
@@ -35,18 +35,18 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 })
 export class BoardComponent implements OnInit {
 
-  form:FormGroup;
+  form: FormGroup;
   categories = [];
   categoriesCount: number;
   boardId: string;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private fb:FormBuilder) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder) {
     this.route.paramMap.subscribe(params => {
       this.boardId = params.get('id');
     });
 
     this.form = this.fb.group({
-      task_name: ['',Validators.required]
+      task_name: ['', Validators.required]
     });
   }
 
@@ -55,7 +55,7 @@ export class BoardComponent implements OnInit {
   }
 
   getCategories(){
-    this.http.get('http://localhost/Trelli/api/boards/' + this.boardId + '.json').subscribe(response => {
+    this.http.get('http://localhost/Trelli/api/boards/' + this.boardId).subscribe(response => {
       this.processCategories(response);
     });
   }
@@ -85,9 +85,12 @@ export class BoardComponent implements OnInit {
         this.categories[i].tasks.push({id: 1, title: val.task_name, description: 'Add description'});
         this.form.reset();
         this.categories[i].showNewTask = false;
-        this.http.post('http://localhost/Trelli/api/tasks/add.json', <Task> {title: val.task_name, description: 'Add description', category_id: id}).subscribe();
+        this.http.post('http://localhost/Trelli/api/tasks/add.json', {title: val.task_name, description: 'Add description', category_id: id}).subscribe();
+
       }
     }
   }
+
+
 
 }
