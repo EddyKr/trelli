@@ -86,6 +86,7 @@ export class BoardComponent implements OnInit {
         this.form.reset();
         this.categories[i].showNewTask = false;
         this.http.post('http://localhost/Trelli/api/tasks/add.json', {title: val.task_name, description: 'Add description', category_id: id}).subscribe();
+
       }
     }
   }
