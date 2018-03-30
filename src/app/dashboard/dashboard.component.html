@@ -1,30 +1,29 @@
 <div id="boards" class="col-sm-8 offset-sm-2" [@boards]="boards.length">
-  <h2>Boards ({{ boardsCount }})</h2>
+    <h2>Boards ({{ boardsCount }})</h2>
 
-  <div *ngFor="let board of boards">
-    <a routerLink="board/{{ board.id }}" class="board" id="{{board.id}}">
-      <span class="title">{{ board.name }}</span>
-    </a>
-  </div>
+    <div *ngFor="let board of boards">
+        <a routerLink="board/{{ board.id }}" class="board" id="{{board.id}}">
+            <span class="title">{{ board.name }}</span>
+        </a>
+    </div>
+
     <a href="#" class="board add-board" (click)="toggleForm()">
-      <span class="title">Create a new board...</span>
+        <span class="title">Create a new board...</span>
     </a>
-  <div class="new-board-form" *ngIf="showVar">
-    <form [formGroup]="form" class="board-form">
-      <fieldset>
-        <div class="form-group">
-          <label for="board_name">Board name</label>
-          <input type="text" class="form-control" id="board_name" placeholder="Board name" name="board_name" formControlName="board_name">
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" placeholder="Description" name="description" formControlName="description">
-        </div>
-      </fieldset>
 
-      <div class="form-buttons">
-        <button class="btn btn-primary" (click)="addBoard(value)">Create new board!</button>
-      </div>
-    </form>
-  </div>
+    <div class="new-board-form" *ngIf="showVar">
+        <form class="board-form">
+            <fieldset [formGroup]="form">
+                <div class="form-group">
+                    <label for="board_name">Board name</label>
+                    <input type="text" class="form-control" id="board_name" placeholder="Board name"
+                           formControlName="board_name">
+                </div>
+            </fieldset>
+
+            <div class="form-buttons">
+                <button class="btn btn-primary" (click)="addBoard(value)">Create new board!</button>
+            </div>
+        </form>
+    </div>
 </div>

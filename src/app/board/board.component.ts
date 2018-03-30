@@ -40,13 +40,13 @@ export class BoardComponent implements OnInit {
   categoriesCount: number;
   boardId: string;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private fb:FormBuilder) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder) {
     this.route.paramMap.subscribe(params => {
       this.boardId = params.get('id');
     });
 
     this.form = this.fb.group({
-      task_name: ['',Validators.required]
+      task_name: ['', Validators.required]
     });
   }
 
@@ -85,7 +85,7 @@ export class BoardComponent implements OnInit {
         this.categories[i].tasks.push({id: 1, title: val.task_name, description: 'Add description'});
         this.form.reset();
         this.categories[i].showNewTask = false;
-        this.http.post('http://localhost/Trelli/api/tasks/add.json', <Task> {title: val.task_name, description: 'Add description', category_id: id}).subscribe();
+        this.http.post('http://localhost/Trelli/api/tasks/add.json', {title: val.task_name, description: 'Add description', category_id: id}).subscribe();
       }
     }
   }
